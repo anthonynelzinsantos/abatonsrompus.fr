@@ -12,6 +12,12 @@ markup:
     renderer:
       unsafe: true
 params:
+    subscribe:
+        amazon: "https://music.amazon.fr/podcasts/98a8b413-9bc1-43e7-b042-678bfe2c07ac/à-bâtons-rompus"
+        apple: "https://podcasts.apple.com/fr/podcast/%C3%A0-b%C3%A2tons-rompus/id1561395619"
+        deezer: "https://www.deezer.com/fr/show/1000145265"
+        google: "https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5hY2FzdC5jb20vcHVibGljL3Nob3dzLzY0YTZjNDdjZmZkZTdjMDAxMTMzMjZjMA?sa=X&ved=0CAIQ9sEGahcKEwiQyfvUx86GAxUAAAAAHQAAAAAQAw"
+        spotify: "https://open.spotify.com/show/33XxOBFdTAMJb0nBic7fJA"
     tint: "270"
 theme: "mvpodcast"
 timeZone: "Europe/Paris"

@@ -6,6 +6,8 @@
 		{{ .Content }}
 	</div>
 	
+	{{ partial "subscribe.html" . }}
+	
 	<div class="embed">
 		<iframe src="{{ .Params.Embed }}?subscribe=false" frameBorder="0" width="100%" height="100px"></iframe>
 	</div>

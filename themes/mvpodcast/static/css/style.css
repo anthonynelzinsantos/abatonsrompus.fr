@@ -202,6 +202,22 @@ h6 {
 		right: 0;
 }
 
+.subscribe {
+	margin: 2.5em auto;
+	text-align: center;
+	vertical-align: center;
+}
+
+.subscribe a {
+	padding: 0 1em 0 1em;
+	text-decoration: none;
+}
+
+.subscribe a:focus,
+.subscribe a:hover {
+	opacity: .75;
+}
+
 #footer {
 	font-size: .9em;
 	margin: 5em 0 10em 0;
