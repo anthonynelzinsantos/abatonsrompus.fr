@@ -1,0 +1,17 @@
+baseURL: "https://abatonsrompus.fr"
+canonifyURLs: true
+copyright: "Arnaud Jourdain & Anthony <nobr>Nelzin-Santos</nobr> — Tous droits réservés"
+defaultContentLanguage: "fr"
+disableHugoGeneratorInject: true
+disableKinds:
+- "taxonomy"
+- "term"
+languageCode: "fr"
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+theme: "minpodcast"
+timeZone: "Europe/Paris"
+timeout: 60s
+title: "À bâtons rompus"
