@@ -22,11 +22,6 @@
 		{{ partial "header.html" . }}
 		
 		<main id="main">
-			{{ if .IsHome }}
-				<h1 class="title">{{ .Site.Title }}</h1>
-				<div class="description">{{ .Content }}</div>
-			{{ end }}
-		
 			{{ block "main" . }}{{ end }}
 		</main>
 		

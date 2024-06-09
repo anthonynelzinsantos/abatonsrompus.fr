@@ -1,6 +1,7 @@
 <header id="header">
 	{{ if .IsHome }}
-		<a href="https://zinzolin.fr" title="Revenir à Zinzolin">← Zinzolin</a>
+		<h1 class="title">{{ .Site.Title }}</h1>
+		<div class="deck">{{ .Content }}</div>
 	{{ else }}
 		<a href="{{ "/" | absURL }}" title="Revenir à la liste des archives de {{ .Site.Title }}">← {{ .Site.Title }}</a>
 	{{ end }}
