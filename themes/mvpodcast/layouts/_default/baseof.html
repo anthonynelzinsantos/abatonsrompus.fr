@@ -55,9 +55,17 @@
 	<body>
 		<header id="header">
 			{{ if .IsHome }}
-				<div class="cover">
-					<img src="{{ absURL "cover.jpg" }}" alt="Jaquette du podcast" />
-				</div>
+				<picture class="cover">
+					<source srcset="{{ absURL "cover.avif" }}" type="image/avif" />
+					<source srcset="{{ absURL "cover.webp" }}" type="image/webp" />
+					<img
+						src="{{ absURL "cover.jpg" }}"
+						alt="Jaquette du podcast"
+						decoding="async"
+						width="1024"
+						height="auto"
+					/>
+				</picture>
 			
 				<div class="heading">
 					<h1 class="title">{{ .Site.Title }}</h1>
