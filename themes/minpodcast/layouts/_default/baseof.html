@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 	
-		<title>{{ if not .IsHome }}{{ .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
+		<title>{{ if not .IsHome }}{{ .Params.Title | markdownify | plainify }} | {{ end }}{{ .Site.Title }}</title>
 		
 		<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 		{{ template "_internal/opengraph.html" . }}
@@ -19,12 +19,25 @@
 	</head>
 	
 	<body>
-		{{ partial "header.html" . }}
+		<header id="header">
+			{{ if .IsHome }}
+				<h1 class="title">{{ .Site.Title }}</h1>
+				<div class="deck">{{ .Content }}</div>
+			{{ else }}
+				<a href="{{ "/" | absURL }}" title="Revenir à la liste des archives de {{ .Site.Title }}">← {{ .Site.Title }}</a>
+			{{ end }}
+		</header>
 		
 		<main id="main">
 			{{ block "main" . }}{{ end }}
 		</main>
 		
-		{{ partial "footer.html" . }}
+		<footer id="footer">
+			{{ with .Site.Copyright }}
+				<div class="copyright">
+					{{ . | markdownify }}
+				</div>
+			{{ end }}
+		</footer>
 	</body>
 </html>
