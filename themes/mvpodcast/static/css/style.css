@@ -195,6 +195,13 @@ h6 {
 	width: 25%;
 }
 
+#main .embed {
+	position: fixed;
+		bottom: -8px;
+		left: 0;
+		right: 0;
+}
+
 #footer {
 	font-size: .9em;
 	margin: 5em 0 10em 0;
