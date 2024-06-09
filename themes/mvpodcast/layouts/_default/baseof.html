@@ -40,7 +40,12 @@
 			}
 		</style>
 		<link rel="stylesheet" href="{{ "/css/style.css" | absURL }}">
-		<link rel="shortcut icon" href="{{ "/images/favicon.ico" | absURL }}" type="image/x-icon" />
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}>
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}>
+		<link rel="shortcut icon" type="image/x-icon" href="{{ "favicon.ico" | absURL }}">
+		<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="manifest" href="/site.webmanifest">
 		
 		{{ with .OutputFormats.Get "RSS" }}
 			<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
@@ -50,10 +55,16 @@
 	<body>
 		<header id="header">
 			{{ if .IsHome }}
-				<h1 class="title">{{ .Site.Title }}</h1>
-				<div class="deck">{{ .Content }}</div>
-				
-				{{ partial "subscribe.html" . }}
+				<div class="cover">
+					<img src="{{ absURL "cover.jpg" }}" alt="Jaquette du podcast" />
+				</div>
+			
+				<div class="heading">
+					<h1 class="title">{{ .Site.Title }}</h1>
+					<div class="deck">{{ .Content }}</div>
+					
+					{{ partial "subscribe.html" . }}
+				</div>
 			{{ else }}
 				<a href="{{ "/" | absURL }}" title="Revenir à la liste des archives de {{ .Site.Title }}">← {{ .Site.Title }}</a>
 			{{ end }}

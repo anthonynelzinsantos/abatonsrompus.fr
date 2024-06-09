@@ -78,7 +78,7 @@ body {
 	font-size: 16px;
 	line-height: 1.6;
 	margin: 0 auto;
-	max-width: 60ch;
+	max-width: 90ch;
 	width: 94%;
 }
 
@@ -105,7 +105,16 @@ h6 {
 }
 
 #header {
+	display: grid;
+		align-items: center;
+		grid-gap: 0 2.5em;
+		grid-template-columns: repeat(auto-fill, minmax(35ch, 1fr));
+		grid-template-rows: 1fr;
 	margin: 10em 0 5em 0;
+}
+
+#header .cover {
+	margin-block-end: 2.5em;
 }
 
 #header .title {
@@ -118,6 +127,12 @@ h6 {
 	color: var(--subtext);
 	margin-block-start: 1em;
 	margin-block-end: 0;
+	text-align: center;
+}
+
+#main {
+	margin: 0 auto;
+	max-width: 60ch;
 }
 
 #main blockquote {
@@ -203,13 +218,14 @@ h6 {
 }
 
 .subscribe {
+	display: flex;
+		gap: 1em;
+		justify-content: center;
+	grid-column: 1/-1;
 	margin: 2.5em auto;
-	text-align: center;
-	vertical-align: center;
 }
 
 .subscribe a {
-	padding: 0 1em 0 1em;
 	text-decoration: none;
 }
 
