@@ -72,8 +72,8 @@ ol[role='list'] {
 }
 
 body {
-	background: #F2F2F2;
-	color: #222222;
+	background: var(--background);
+	color: var(--text);
 	font-family: -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.6;
@@ -89,7 +89,7 @@ a {
 
 a:focus,
 a:hover {
-	color: #7843B4;
+	color: var(--accent);
 	text-decoration-line: underline;
 }
 
@@ -115,14 +115,14 @@ h6 {
 }
 
 #header .deck {
-	color: #6E6E6E;
+	color: var(--subtext);
 	margin-block-start: 1em;
 	margin-block-end: 0;
 }
 
 #main blockquote {
-	border-left: 2px solid #7843B4;
-	color: #6E6E6E;
+	border-left: 2px solid var(--accent);
+	color: var(--subtext);
 	margin: 0 0 1em 0;
 	padding: 0 0 0 1em;
 }
@@ -154,7 +154,7 @@ h6 {
 }
 
 #main .list time {
-	color: #6E6E6E;
+	color: var(--subtext);
 	text-align: right;
 }
 
@@ -164,7 +164,7 @@ h6 {
 }
 
 #main .time {
-	color: #6E6E6E;
+	color: var(--subtext);
 	display: block;
 	margin-block-start: .5em;
 	text-align: center;
@@ -180,25 +180,6 @@ h6 {
 	vertical-align: super;
 }
 
-#main .content a[href]:not(:where(
-	[href^="#"],
-	[href^="/"]:not([href^="//"]),
-	[href*="//cm.zinzolin.fr"],
-	[href*="//localhost:1313"],
-)):after {
-	content: "➹";
-}
-
-#main .content a[href]:where(
-	[href*="//cm.zinzolin.fr"],
-	[href*="//localhost:1313"]
-):not(:where(
-	[href^="#"],
-	[href^="/"]:not([href^="//"])
-)):after {
-	content: "＊";
-}
-
 #main .content h3 {
 	font-style: italic;
 	margin-block-start: 2.5em;
@@ -206,7 +187,7 @@ h6 {
 }
 
 #main .content hr {
-	background: #6E6E6E;
+	background: var(--subtext);
 	border: none;
 	display: block;
 	height: 2px;
@@ -221,5 +202,5 @@ h6 {
 }
 
 #footer .copyright {
-	color: #6E6E6E;
+	color: var(--subtext);
 }

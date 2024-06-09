@@ -1,0 +1,10 @@
+name: "Minimum viable podcast"
+license: "EUPL 1.2"
+licenselink: "https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12"
+description: "A minimal theme for podcast websites."
+homepage: "https://github.com/anthonynelzinsantos/mvpodcast"
+min_version: "0.100"
+
+author:
+    name: "Anthony Nelzin-Santos"
+    homepage: "https://a17s.net"

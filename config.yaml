@@ -11,7 +11,9 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-theme: "minpodcast"
+params:
+    tint: "270"
+theme: "mvpodcast"
 timeZone: "Europe/Paris"
 timeout: 60s
 title: "À bâtons rompus"

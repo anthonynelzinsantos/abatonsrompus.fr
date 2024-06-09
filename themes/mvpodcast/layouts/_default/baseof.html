@@ -10,6 +10,35 @@
 		{{ template "_internal/schema.html" . }}
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
 		
+		<style media="screen">
+			:root {
+				--background: lch(95 5 {{ default 95 .Site.Params.Tint }});
+				--accent: lch(45 50 {{ default 95 .Site.Params.Tint }});
+				--text: lch(15 5 {{ default 95 .Site.Params.Tint }});
+				--subtext: lch(45 10 {{ default 95 .Site.Params.Tint }});
+			}
+			
+			{{ $page := absURL "" }}
+			{{ $site := urls.Parse $page }}
+			#main .content a[href]:not(:where(
+				[href^="#"],
+				[href^="/"]:not([href^="//"]),
+				[href*="//{{ $site.Hostname }}"],
+				[href*="//localhost:1313"],
+			)):after {
+				content: "➹";
+			}
+			
+			#main .content a[href]:where(
+				[href*="//{{ $site.Hostname }}"],
+				[href*="//localhost:1313"]
+			):not(:where(
+				[href^="#"],
+				[href^="/"]:not([href^="//"])
+			)):after {
+				content: "＊";
+			}
+		</style>
 		<link rel="stylesheet" href="{{ "/css/style.css" | absURL }}">
 		<link rel="shortcut icon" href="{{ "/images/favicon.ico" | absURL }}" type="image/x-icon" />
 		
