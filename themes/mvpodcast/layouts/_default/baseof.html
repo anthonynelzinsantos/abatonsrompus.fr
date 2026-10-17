@@ -12,6 +12,8 @@
 		
 		<style media="screen">
 			:root {
+				color-scheme: light dark;
+				--icons: #2f12b0;
 				--background: lch(96 4 {{ default 95 .Site.Params.Tint }});
 				--deep: #2f12b0;
 				--chevron: #5827e8;
@@ -19,6 +21,17 @@
 				--accent: lch(45 50 {{ default 95 .Site.Params.Tint }});
 				--text: lch(15 5 {{ default 95 .Site.Params.Tint }});
 				--subtext: lch(45 10 {{ default 95 .Site.Params.Tint }});
+			}
+			
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--icons: #9b8cf2;
+					--background: lch(6 16 {{ add (default 95 .Site.Params.Tint | int) 15 }});
+					--sky: var(--background);
+					--accent: lch(70 45 {{ default 95 .Site.Params.Tint }});
+					--text: lch(92 3 {{ default 95 .Site.Params.Tint }});
+					--subtext: lch(65 8 {{ default 95 .Site.Params.Tint }});
+				}
 			}
 			
 			{{ $page := absURL "" }}
