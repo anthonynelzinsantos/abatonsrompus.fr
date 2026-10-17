@@ -80,6 +80,10 @@ ol[role='list'] {
     list-style: none;
 }
 
+html {
+	background: var(--background);
+}
+
 body {
 	background: var(--background);
 	color: var(--text);
