@@ -318,10 +318,31 @@ body:not(.home) #header::before {
 }
 
 #main .embed {
+	background-color: var(--background);
 	position: fixed;
 		bottom: -8px;
 		left: 0;
 		right: 0;
+}
+
+.tint {
+	background-color: #2f12b0;
+	display: none;
+	height: 12px;
+	pointer-events: none;
+	position: fixed;
+		top: -8px;
+		left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+@supports (-webkit-touch-callout: none) {
+	@media (width < 768px) {
+		.tint {
+			display: block;
+		}
+	}
 }
 
 .subscribe {
