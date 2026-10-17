@@ -61,7 +61,7 @@
 			<div class="wrap">
 			{{ if .IsHome }}
 				<div class="heading">
-					<h1 class="title">{{ .Site.Title }}</h1>
+					<h1 class="title">{{ .Site.Title | lower }}</h1>
 					<div class="deck">{{ .Content }}</div>
 					
 					{{ partial "subscribe.html" . }}
