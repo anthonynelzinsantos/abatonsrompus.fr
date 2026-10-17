@@ -1,0 +1,5 @@
+{{ $player := .Site.Params.player }}
+{{ $query := querify "subscribe" "false" "cover" $player.cover "accentColor" $player.accentcolor "bgColor" $player.bgcolor "secondaryColor" $player.secondarycolor }}
+<div class="embed" style="background-color: #{{ $player.bgcolor }}">
+	<iframe src="{{ printf "%s?%s" .Params.Embed $query | safeURL }}" frameBorder="0" width="100%" height="100px"></iframe>
+</div>

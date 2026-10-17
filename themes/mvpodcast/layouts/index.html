@@ -8,8 +8,6 @@
 	{{ end }}
 	
 	{{ with index .Site.RegularPages 0 }}
-		<div class="embed">
-			<iframe src="{{ .Params.Embed }}?subscribe=false" frameBorder="0" width="100%" height="100px"></iframe>
-		</div>
+		{{ partial "embed.html" . }}
 	{{ end }}
 {{ end }}

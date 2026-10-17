@@ -12,6 +12,11 @@ markup:
     renderer:
       unsafe: true
 params:
+    player:
+        accentcolor: "F0F2F5"
+        bgcolor: "2b2375"
+        cover: "false"
+        secondarycolor: "F0F2F5"
     subscribe:
         amazon: "https://music.amazon.fr/podcasts/98a8b413-9bc1-43e7-b042-678bfe2c07ac/à-bâtons-rompus"
         apple: "https://podcasts.apple.com/fr/podcast/%C3%A0-b%C3%A2tons-rompus/id1561395619"

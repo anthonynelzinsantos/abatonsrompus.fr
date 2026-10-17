@@ -325,7 +325,6 @@ body:not(.home) #header::before {
 }
 
 #main .embed {
-	background-color: rgb(4, 30, 57);
 	position: fixed;
 		bottom: -8px;
 		left: 0;
