@@ -1,26 +1,22 @@
 <div class="subscribe">
-	<!-- Icons MIT © Phosphor Icons -->
-	{{ with .Site.Params.Subscribe.Amazon }}
-		<a href="{{ . }}" title="Suivre sur Amazon Music">
-			<img src="/img/amazon.svg" alt="Icône Amazon Music" width="48" height="48" />
-		</a>
-	{{ end }}
-	
-	{{ with .Site.Params.Subscribe.Apple }}
-		<a href="{{ . }}" title="Suivre sur Apple Podcasts">
-			<img src="/img/apple.svg" alt="Icône Apple Podcasts" width="48" height="48" />
-		</a>
-	{{ end }}
-	
-	{{ with .Site.Params.Subscribe.Deezer }}
-		<a href="{{ . }}" title="Suivre sur Deezer">
-			<img src="/img/deezer.svg" alt="Icône Deezer" width="48" height="48" />
-		</a>
-	{{ end }}
-	
-	{{ with .Site.Params.Subscribe.Spotify }}
-		<a href="{{ . }}" title="Suivre sur Spotify">
-			<img src="/img/spotify.svg" alt="Icône Spotify" width="48" height="48" />
-		</a>
+	<!-- Icons CC0 © Simple Icons, MIT © Phosphor Icons (Amazon Music) -->
+	{{ $platforms := slice
+		(dict "key" "apple" "icon" "applepodcasts" "label" "Apple Podcasts")
+		(dict "key" "spotify" "icon" "spotify" "label" "Spotify")
+		(dict "key" "deezer" "icon" "deezer" "label" "Deezer")
+		(dict "key" "amazon" "icon" "amazonmusic" "label" "Amazon Music")
+		(dict "key" "overcast" "icon" "overcast" "label" "Overcast")
+		(dict "key" "pocketcasts" "icon" "pocketcasts" "label" "Pocket Casts")
+		(dict "key" "castro" "icon" "castro" "label" "Castro")
+		(dict "key" "podcastaddict" "icon" "podcastaddict" "label" "Podcast Addict")
+		(dict "key" "rss" "icon" "rss" "label" "le flux RSS")
+	}}
+	{{ range $platforms }}
+		{{ $p := . }}
+		{{ with index $.Site.Params.subscribe $p.key }}
+			<a href="{{ . }}" title="Suivre sur {{ $p.label }}" aria-label="Suivre sur {{ $p.label }}">
+				{{ with resources.Get (printf "icons/%s.svg" $p.icon) }}{{ .Content | safeHTML }}{{ end }}
+			</a>
+		{{ end }}
 	{{ end }}
 </div>

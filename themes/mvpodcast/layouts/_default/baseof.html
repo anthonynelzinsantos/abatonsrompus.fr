@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 	
-		<title>{{ if not .IsHome }}{{ .Params.Title | markdownify | plainify }} | {{ end }}{{ .Site.Title }}</title>
+		<title>{{ if not .IsHome }}{{ if eq .Kind "404" }}Erreur 404{{ else }}{{ .Params.Title | markdownify | plainify }}{{ end }} | {{ end }}{{ .Site.Title }}</title>
 		
 		<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 		{{ template "_internal/opengraph.html" . }}
@@ -12,7 +12,10 @@
 		
 		<style media="screen">
 			:root {
-				--background: lch(95 5 {{ default 95 .Site.Params.Tint }});
+				--background: lch(96 4 {{ default 95 .Site.Params.Tint }});
+				--deep: #2f12b0;
+				--chevron: #5827e8;
+				--sky: #c9d6f8;
 				--accent: lch(45 50 {{ default 95 .Site.Params.Tint }});
 				--text: lch(15 5 {{ default 95 .Site.Params.Tint }});
 				--subtext: lch(45 10 {{ default 95 .Site.Params.Tint }});
@@ -52,21 +55,11 @@
 		{{ end }}
 	</head>
 	
-	<body>
+	<body{{ if .IsHome }} class="home"{{ end }}>
 		<header id="header">
+			<span class="grain" aria-hidden="true"></span>
+			<div class="wrap">
 			{{ if .IsHome }}
-				<picture class="cover">
-					<source srcset="{{ absURL "cover.avif" }}" type="image/avif" />
-					<source srcset="{{ absURL "cover.webp" }}" type="image/webp" />
-					<img
-						src="{{ absURL "cover.jpg" }}"
-						alt="Jaquette du podcast"
-						decoding="async"
-						width="1024"
-						height="1024"
-					/>
-				</picture>
-			
 				<div class="heading">
 					<h1 class="title">{{ .Site.Title }}</h1>
 					<div class="deck">{{ .Content }}</div>
@@ -75,7 +68,9 @@
 				</div>
 			{{ else }}
 				<a href="{{ "/" | absURL }}" title="Revenir à la liste des archives de {{ .Site.Title }}">← {{ .Site.Title }}</a>
+				{{ block "header" . }}{{ end }}
 			{{ end }}
+			</div>
 		</header>
 		
 		<main id="main">

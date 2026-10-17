@@ -1,3 +1,11 @@
+@font-face {
+	font-family: "Dattilo";
+	font-display: swap;
+	font-weight: 200 900;
+	src: url("../fonts/DattiloDJRBannerVariable-VF.woff2") format("woff2"),
+		url("../fonts/DattiloDJRBannerVariable-VF.woff") format("woff");
+}
+
 *,
 *::before,
 *::after {
@@ -78,9 +86,7 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.6;
-	margin: 0 auto;
-	max-width: 90ch;
-	width: 94%;
+	margin: 0;
 }
 
 a {
@@ -106,35 +112,136 @@ h6 {
 }
 
 #header {
-	display: grid;
-		align-items: center;
-		grid-gap: 2.5em;
-		grid-template-columns: repeat(auto-fill, minmax(35ch, 1fr));
-		grid-template-rows: 1fr;
-	margin: 10em 0 5em 0;
+	color: white;
+	isolation: isolate;
+	margin: 0 0 -8em 0;
+	overflow-x: clip;
+	padding: 3em 0 13em 0;
+	position: relative;
 }
 
-#header .cover {
-	aspect-ratio: 1;
-	overflow: hidden;
+body.home #header {
+	margin-block-end: -12em;
+	padding: 6em 0 20em 0;
+}
+
+/* The cover’s deep blue, held for two thirds then diffused into light blue by a
+   Gaussian blur. The layer extends past the header on every side so the blur
+   never shows its own edges. */
+#header::after {
+	background:
+		radial-gradient(ellipse 85% 70% at 50% 0, var(--deep) 99%, transparent 100%),
+		radial-gradient(ellipse 72% 100% at 50% 0, var(--sky) 99%, transparent 100%);
+	content: "";
+	filter: blur(3em);
+	position: absolute;
+		inset: -6em calc(-1 * max(8%, 8em)) 2em calc(-1 * max(8%, 8em));
+	z-index: -3;
+}
+
+/* Dither: a faint noise over the gradient hides 8-bit banding. It sits in its
+   own element because blurring it would smooth the grain away. */
+#header .grain {
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 .022'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	mask-image: radial-gradient(ellipse 150% 108% at 50% 0, black 88%, transparent 100%);
+	position: absolute;
+		inset: -6em calc(-1 * max(8%, 8em)) 2em calc(-1 * max(8%, 8em));
+	z-index: -2;
+}
+
+/* The cover’s chevron: drawn as a background inside a box masked like the
+   deep blue, so it fades with the gradient instead of sitting on top of it */
+#header::before {
+	--chevron-size: clamp(9rem, 28vw, 17rem);
+	--chevron-top: 2.5em;
+	--chevron-shift: 0px;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='f' x2='0' y2='1'%3E%3Cstop offset='.35' stop-color='%235827e8'/%3E%3Cstop offset='.95' stop-color='%235827e8' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23f)' d='M0 0h100v100H61V39H0z'/%3E%3C/svg%3E") no-repeat
+		right max(3vw, calc((100vw - 90ch) / 2)) top calc(6em + var(--chevron-top) + var(--chevron-shift)) / var(--chevron-size) var(--chevron-size);
+	content: "";
+	mask-image: radial-gradient(ellipse 140% 82% at 50% 0,
+			black 40%,
+			color-mix(in srgb, black 60%, transparent) 51%,
+			color-mix(in srgb, black 20%, transparent) 58%,
+			transparent 64%);
+	position: absolute;
+		inset: -6em 0 0 0;
+	z-index: -1;
+}
+
+body:not(.home) #header::before {
+	--chevron-size: clamp(6rem, 18vw, 10rem);
+	--chevron-top: 1em;
+}
+
+/* Parallax: the chevron lags behind the scroll */
+@property --chevron-shift {
+	syntax: "<length>";
+	inherits: false;
+	initial-value: 0px;
+}
+
+@supports (animation-timeline: scroll()) {
+	@media (prefers-reduced-motion: no-preference) {
+		#header::before {
+			animation: chevron-parallax linear both;
+			animation-range: 0 450px;
+			animation-timeline: scroll(root block);
+		}
+	}
+}
+
+@keyframes chevron-parallax {
+	to {
+		--chevron-shift: 180px;
+	}
+}
+
+#header .wrap {
+	margin: 0 auto;
+	max-width: 90ch;
+	width: 94%;
+}
+
+#header .time {
+	color: #c9d0f7;
+	display: block;
+	margin-block-start: .5em;
+	text-align: center;
+}
+
+#header a:focus,
+#header a:hover {
+	color: white;
+	text-decoration-line: underline;
 }
 
 #header .title {
-	font-size: 2em;
-	line-height: 1.25em;
+	font-family: "Dattilo", Georgia, serif;
+	font-size: 3em;
+	font-weight: 900;
+	line-height: 1.1;
 	text-align: center;
 }
 
 #header .deck {
-	color: var(--subtext);
+	color: #c9d0f7;
 	margin-block-start: 1em;
 	margin-block-end: 0;
+	margin-inline: auto;
+	max-width: 60ch;
 	text-align: center;
+}
+
+#header .deck p {
+	margin: 0;
 }
 
 #main {
 	margin: 0 auto;
 	max-width: 60ch;
+	position: relative;
+	z-index: 1;
+	width: 94%;
 }
 
 #main blockquote {
@@ -145,8 +252,10 @@ h6 {
 }
 
 #main h1 {
-	font-size: 2em;
-	line-height: 1.25em;
+	font-family: "Dattilo", Georgia, serif;
+	font-size: 2.25em;
+	font-weight: 900;
+	line-height: 1.1;
 	text-align: center;
 }
 
@@ -188,7 +297,7 @@ h6 {
 }
 
 #main .content {
-	margin-block-start: 2.5em;
+	margin-block-start: 0;
 }
 
 #main .content a[href]:after {
@@ -221,27 +330,55 @@ h6 {
 
 .subscribe {
 	display: flex;
-		gap: 1em;
+		flex-wrap: wrap;
+		gap: clamp(.7em, 3vw, 1.25em);
 		justify-content: center;
-	grid-column: 1/-1;
 	margin: 2.5em 0 0 0;
 }
 
 .subscribe a {
+	color: inherit;
+	display: block;
 	text-decoration: none;
+}
+
+.subscribe svg {
+	display: block;
+	height: 26px;
+	width: 26px;
+}
+
+.subscribe a {
+	transition: transform .15s ease;
 }
 
 .subscribe a:focus,
 .subscribe a:hover {
-	opacity: .75;
+	transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.subscribe a {
+		transition: none;
+	}
+}
+
+#main .subscribe {
+	color: var(--deep);
+	margin-block-start: 3em;
 }
 
 #footer {
 	font-size: .9em;
-	margin: 5em 0 10em 0;
+	margin: 5em auto 10em auto;
+	width: 94%;
 	text-align: center;
 }
 
 #footer .copyright {
 	color: var(--subtext);
+}
+body:not(.home) #header .title {
+	font-size: 2.25em;
+	margin-block-start: 1.25em;
 }

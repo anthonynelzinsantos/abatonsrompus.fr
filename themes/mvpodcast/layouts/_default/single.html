@@ -1,7 +1,9 @@
-{{ define "main" }}
+{{ define "header" }}
 	<h1 class="title">{{ .Title | markdownify }}</h1>
 	<time class="time" datetime="{{ .PublishDate }}">{{ .PublishDate | time.Format ":date_long" }}</time>
-	
+{{ end }}
+
+{{ define "main" }}
 	<div class="content">
 		{{ .Content }}
 	</div>
