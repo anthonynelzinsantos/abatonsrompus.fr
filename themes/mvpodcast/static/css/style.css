@@ -342,6 +342,7 @@ body:not(.home) #header::before {
 
 .subscribe a {
 	transition: transform .15s ease;
+	will-change: transform;
 }
 
 .subscribe a:focus,
